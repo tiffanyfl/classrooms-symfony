@@ -75,6 +75,7 @@ class ComposerStaticInit794439944195e20f666d1311076c1bbc
         'C' => 
         array (
             'Composer\\CaBundle\\' => 18,
+            'ClassBundle\\' => 12,
         ),
         'A' => 
         array (
@@ -214,6 +215,10 @@ class ComposerStaticInit794439944195e20f666d1311076c1bbc
         'Composer\\CaBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/ca-bundle/src',
+        ),
+        'ClassBundle\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/ClassBundle',
         ),
         'AppBundle\\' => 
         array (
