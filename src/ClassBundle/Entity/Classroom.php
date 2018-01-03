@@ -84,7 +84,7 @@ class Classroom
      *
      * @return Classroom
      */
-    public function setNbSeat($nbseats)
+    public function setNbSeats($nbseats)
     {
         $this->nbseats = $nbseats;
 
@@ -96,7 +96,7 @@ class Classroom
      *
      * @return int
      */
-    public function getNbSeat()
+    public function getNbSeats()
     {
         return $this->nbseats;
     }
