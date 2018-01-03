@@ -31,9 +31,9 @@ class Classroom
     /**
      * @var int
      *
-     * @ORM\Column(name="seat", type="integer")
+     * @ORM\Column(name="nbseats", type="integer")
      */
-    private $seat;
+    private $nbseats;
 
     /**
      * @var string
@@ -125,4 +125,3 @@ class Classroom
         return $this->speaker;
     }
 }
-
