@@ -5,7 +5,8 @@ namespace ClassBundle\Controller;
 use ClassBundle\Entity\Classroom;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Classroom controller.
@@ -132,5 +133,33 @@ class ClassroomController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+    *@Route("/{id}/assign/speaker", name="speaker_id")
+    *@Method({"GET","POST"})
+    */
+
+    public function assignSpeaker(Request $request, Classroom $classroom){
+        
+        $assignForm = $this->createForm('ClassBundle\Form\ClassroomSpeakerType', $classroom);
+        $assignForm->handleRequest($request);
+
+        if ($assignForm->isSubmitted() && $assignForm->isValid()) {
+            $speakers = $assignForm->get('speaker')->getData();
+            foreach ($speakers as $speaker) {
+                $classroom->addSpeaker($speaker);
+            }
+
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('classroom_show', array('id' => $classroom->getId()));
+        }
+
+        return $this->render('classroom/assign_speaker.html.twig', array(
+            'classroom' => $classroom,
+            'assign_form' => $assignForm->createView(),
+        ));
+        
     }
 }

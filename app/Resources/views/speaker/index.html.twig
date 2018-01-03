@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Speakers list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Subject</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for speaker in speakers %}
+            <tr>
+                <td><a href="{{ path('speaker_show', { 'id': speaker.id }) }}">{{ speaker.id }}</a></td>
+                <td>{{ speaker.name }}</td>
+                <td>{{ speaker.subject }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('speaker_show', { 'id': speaker.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('speaker_edit', { 'id': speaker.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('speaker_new') }}">Create a new speaker</a>
+        </li>
+    </ul>
+{% endblock %}

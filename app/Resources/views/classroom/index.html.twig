@@ -19,7 +19,11 @@
                 <td><a href="{{ path('classroom_show', { 'id': classroom.id }) }}">{{ classroom.id }}</a></td>
                 <td>{{ classroom.name }}</td>
                 <td>{{ classroom.nbseats }}</td>
-                <td>{{ classroom.speaker }}</td>
+                {% if classroom.speaker is not null %}
+                    <td>{{ classroom.speaker.name }}</td>
+                {% else %}
+                    <td>No speaker</td>
+                {% endif %}
                 <td>
                     <ul>
                         <li>
