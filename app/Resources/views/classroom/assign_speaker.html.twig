@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Assign speaker</h1>
+
+    {{ form_start(assign_form) }}
+        {{ form_widget(assign_form) }}
+        <input type="submit" value="Assign" />
+    {{ form_end(assign_form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('classroom_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

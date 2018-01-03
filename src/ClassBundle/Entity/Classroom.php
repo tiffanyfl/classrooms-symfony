@@ -3,6 +3,7 @@
 namespace ClassBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Classroom
@@ -24,7 +25,7 @@ class Classroom
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
@@ -36,12 +37,17 @@ class Classroom
     private $nbseats;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="speaker", type="string", length=255)
+     * @ORM\OneToOne(targetEntity="Speaker")
+     * @ORM\JoinColumn(name="speaker_id", referencedColumnName="id")
      */
+
     private $speaker;
 
+    public function __construct()
+    {
+       $this->speaker = new ArrayCollection();
+     }
+ 
 
     /**
      * Get id
@@ -104,7 +110,7 @@ class Classroom
     /**
      * Set speaker
      *
-     * @param string $speaker
+     * @param ArrayCollection $speaker
      *
      * @return Classroom
      */
@@ -118,10 +124,15 @@ class Classroom
     /**
      * Get speaker
      *
-     * @return string
+     * @return ArrayCollection
      */
     public function getSpeaker()
     {
         return $this->speaker;
+    }
+
+    public function addSpeaker($speaker)
+    {
+      $this->speaker[] += $speaker;
     }
 }
