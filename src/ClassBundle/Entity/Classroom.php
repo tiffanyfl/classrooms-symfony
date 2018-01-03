@@ -78,27 +78,27 @@ class Classroom
     }
 
     /**
-     * Set seat
+     * Set nbseats
      *
      * @param integer $seat
      *
      * @return Classroom
      */
-    public function setSeat($seat)
+    public function setNbSeat($nbseats)
     {
-        $this->seat = $seat;
+        $this->nbseats = $nbseats;
 
         return $this;
     }
 
     /**
-     * Get seat
+     * Get nbseats
      *
      * @return int
      */
-    public function getSeat()
+    public function getNbSeat()
     {
-        return $this->seat;
+        return $this->nbseats;
     }
 
     /**
