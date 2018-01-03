@@ -3,9 +3,6 @@
 namespace ClassBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
-use ClassBundle\Entity\Student;
 
 /**
  * Seat
@@ -36,11 +33,6 @@ class Seat
      * @ORM\JoinColumn(name="student_id", referencedColumnName="id", nullable=true)
      */
     private $seatStudent;
-
-    public function __construct()
-    {
-      $this->seatStudent = new ArrayCollection();
-    }
 
     /**
      * Get id
@@ -80,7 +72,7 @@ class Seat
 
      * Set seatStudent
      *
-     * @param ArrayCollection $seatStudent
+     * @param int $seatStudent
      *
      * @return Seat
      */
@@ -95,7 +87,7 @@ class Seat
 
      * Get seatStudent
      *
-     * @return ArrayCollection
+     * @return Seat
      */
 
     public function getSeatStudent()

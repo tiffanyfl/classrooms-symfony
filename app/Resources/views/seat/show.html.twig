@@ -15,7 +15,13 @@
             </tr>
             <tr>
                 <th>Student</th>
+                {% if seat.seatStudent is not null %}
                 <td>{{ seat.seatStudent.firstname }} {{ seat.seatStudent.name }}</td>
+                {% else %}
+                    <td>No student in this place.
+                    <a href="{{ path('seat_show', { 'id': seat.id }) }}/assign/student">New student</a>
+                    </td>
+                {% endif %}
             </tr>
         </tbody>
     </table>

@@ -17,7 +17,11 @@
             <tr>
                 <td><a href="{{ path('seat_show', { 'id': seat.id }) }}">{{ seat.id }}</a></td>
                 <td>{{ seat.number }}</td>
-                
+                {% if seat.seatStudent is not null %}
+                    <td>{{ seat.seatStudent.firstname }} {{ seat.seatStudent.name }}</td>
+                {% else %}
+                    <td>No student</td>
+                {% endif %}
                 <td>
                     <ul>
                         <li>

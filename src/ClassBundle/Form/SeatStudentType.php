@@ -14,7 +14,6 @@ class SeatStudentType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        //$student = $options['student'];
         $builder->add('seatStudent', EntityType::class, array(
           'class' => 'ClassBundle:Student',
           'choice_label' => 'name',
@@ -34,7 +33,7 @@ class SeatStudentType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'classbundle_seat';
+        return 'classbundle_seat_seatStudent';
     }
 
 
