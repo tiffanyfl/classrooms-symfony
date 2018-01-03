@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Student Seat</h1>
+
+    {{ form_start(seatForm) }}
+        {{ form_widget(seatForm) }}
+        <input type="submit" value="Assign" />
+    {{ form_end(seatForm) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('seat_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

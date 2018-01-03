@@ -13,8 +13,17 @@
                 <th>Number</th>
                 <td>{{ seat.number }}</td>
             </tr>
+            <tr>
+                <th>Student</th>
+                <td>{{ seat.seatStudent.firstname }} {{ seat.seatStudent.name }}</td>
+            </tr>
         </tbody>
     </table>
+
+    {% for trs in seat.seatStudent %}
+      <p>{{ trs.name }}</p>
+    {% endfor %}
+
 
     <ul>
         <li>

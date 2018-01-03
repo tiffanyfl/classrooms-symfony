@@ -3,9 +3,11 @@
 namespace ClassBundle\Controller;
 
 use ClassBundle\Entity\Seat;
+use ClassBundle\Entity\Student;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Seat controller.
@@ -116,6 +118,40 @@ class SeatController extends Controller
         }
 
         return $this->redirectToRoute('seat_index');
+    }
+
+
+
+
+    /**
+    *@Route("/{id}/assign/student", name="student_id")
+    *@Method({"GET", "POST"})
+    */
+    public function addSeatStudent(Request $request, Seat $seat)
+    {
+      $form = $this->createForm('ClassBundle\Form\SeatStudentType', $seat);
+
+      $form->handleRequest($request);
+
+      if($form->isSubmitted() && $form->isValid()) {
+        $studentSeat = $form->get('seatStudent')->getData();
+        foreach ($studentSeat as $stud) {
+          $seat->addSeatStudent($stud);
+        }
+
+        $this->getDoctrine()->getManager()->flush();
+        // $beneficiaries = $assignForm->get('beneficiaries')->getData();
+        //foreach ($beneficiaries as $beneficiary){
+        //$account->addBeneficiary($beneficiary);
+        //}
+        //mettre $this...flush ici
+        return $this->redirectToRoute('seat_show', array('id' => $seat->getId()));
+      }
+
+      return $this->render('seat/student_seat.html.twig', array(
+        'seat' => $seat,
+        'seatForm' => $form->createView()
+      ));
     }
 
     /**

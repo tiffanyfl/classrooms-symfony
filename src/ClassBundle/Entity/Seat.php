@@ -3,6 +3,9 @@
 namespace ClassBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use ClassBundle\Entity\Student;
 
 /**
  * Seat
@@ -28,6 +31,16 @@ class Seat
      */
     private $number;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Student")
+     * @ORM\JoinColumn(name="student_id", referencedColumnName="id", nullable=true)
+     */
+    private $seatStudent;
+
+    public function __construct()
+    {
+      $this->seatStudent = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -62,5 +75,36 @@ class Seat
     {
         return $this->number;
     }
-}
 
+    /**
+
+     * Set seatStudent
+     *
+     * @param ArrayCollection $seatStudent
+     *
+     * @return Seat
+     */
+
+    public function setSeatStudent($seatStudent)
+    {
+        $this->seatStudent = $seatStudent;
+        return $this;
+    }
+
+    /**
+
+     * Get seatStudent
+     *
+     * @return ArrayCollection
+     */
+
+    public function getSeatStudent()
+    {
+        return $this->seatStudent;
+    }
+
+    public function addSeatStudent($seatStudent)
+    {
+      $this->seatStudent[] += $seatStudent;
+    }
+}
