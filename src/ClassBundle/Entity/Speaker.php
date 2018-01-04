@@ -3,12 +3,14 @@
 namespace ClassBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Speaker
  *
  * @ORM\Table(name="speaker")
  * @ORM\Entity(repositoryClass="ClassBundle\Repository\SpeakerRepository")
+ * @UniqueEntity("name", message="This name is already used.")
  */
 class Speaker
 {
@@ -24,7 +26,7 @@ class Speaker
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
 
