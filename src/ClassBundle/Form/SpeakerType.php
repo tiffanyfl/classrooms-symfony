@@ -13,7 +13,7 @@ class SpeakerType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('subject');
+        $builder->add('name')->add('subject')->add('classroom');
     }/**
      * {@inheritdoc}
      */

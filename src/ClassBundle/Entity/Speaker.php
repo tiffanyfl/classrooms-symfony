@@ -35,6 +35,12 @@ class Speaker
      */
     private $subject;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Classroom", mappedBy="speaker")
+     */
+
+    private $classroom;
+
 
     /**
      * Get id
@@ -92,6 +98,30 @@ class Speaker
     public function getSubject()
     {
         return $this->subject;
+    }
+
+    /**
+     * Set classroom
+     *
+     * @param string $classroom
+     *
+     * @return Speaker
+     */
+    public function setClassroom($classroom)
+    {
+        $this->classroom = $classroom;
+
+        return $this;
+    }
+
+    /**
+     * Get classroom
+     *
+     * @return string
+     */
+    public function getClassroom()
+    {
+        return $this->classroom;
     }
 }
 

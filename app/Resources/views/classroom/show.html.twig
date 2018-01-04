@@ -20,7 +20,9 @@
             <tr>
                 <th>Speaker</th>
                 {% if classroom.speaker is not null %}
-                <td>{{ classroom.speaker.name }}</td>
+                <td>{{ classroom.speaker.name }}
+                <a href="{{ path('classroom_show', { 'id': classroom.id }) }}/assign/speaker"Change speaker</a>
+                </td>
                 {% else %}
                     <td>No speaker for this class. Would you like to assign one ?
                     <a href="{{ path('classroom_show', { 'id': classroom.id }) }}/assign/speaker">New speaker</a>
