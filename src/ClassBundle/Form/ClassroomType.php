@@ -13,7 +13,7 @@ class ClassroomType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('nbseats')->add('speaker');
+        $builder->add('name')->add('nbseats');
     }/**
      * {@inheritdoc}
      */

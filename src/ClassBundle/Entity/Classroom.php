@@ -3,7 +3,7 @@
 namespace ClassBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
+// use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Classroom
@@ -43,10 +43,10 @@ class Classroom
 
     private $speaker;
 
-    public function __construct()
-    {
-       $this->speaker = new ArrayCollection();
-     }
+    // public function __construct()
+    // {
+    //    $this->speaker = new ArrayCollection();
+    //  }
  
 
     /**
@@ -110,7 +110,7 @@ class Classroom
     /**
      * Set speaker
      *
-     * @param ArrayCollection $speaker
+     * @param string $speaker
      *
      * @return Classroom
      */
@@ -124,7 +124,7 @@ class Classroom
     /**
      * Get speaker
      *
-     * @return ArrayCollection
+     * @return string
      */
     public function getSpeaker()
     {

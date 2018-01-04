@@ -38,8 +38,8 @@ class Speaker
     /**
      * @ORM\OneToOne(targetEntity="Classroom", mappedBy="speaker")
      */
-
     private $classroom;
+    
 
 
     /**
