@@ -3,13 +3,14 @@
 namespace ClassBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Classroom
  *
  * @ORM\Table(name="classroom")
  * @ORM\Entity(repositoryClass="ClassBundle\Repository\ClassroomRepository")
+ * @UniqueEntity("name", message="This name is already used.")
  */
 class Classroom
 {
@@ -25,7 +26,7 @@ class Classroom
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
 
@@ -40,8 +41,8 @@ class Classroom
      * @ORM\OneToOne(targetEntity="Speaker")
      * @ORM\JoinColumn(name="speaker_id", referencedColumnName="id")
      */
-
     private $speaker;
+
 
     /**
      * @ORM\OneToMany(targetEntity="Seat", mappedBy="seatClass")
@@ -115,7 +116,7 @@ class Classroom
     /**
      * Set speaker
      *
-     * @param ArrayCollection $speaker
+     * @param string $speaker
      *
      * @return Classroom
      */
@@ -129,7 +130,7 @@ class Classroom
     /**
      * Get speaker
      *
-     * @return ArrayCollection
+     * @return string
      */
     public function getSpeaker()
     {

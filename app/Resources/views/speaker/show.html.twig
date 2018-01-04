@@ -17,6 +17,18 @@
                 <th>Subject</th>
                 <td>{{ speaker.subject }}</td>
             </tr>
+            <tr>
+                <th>Classroom</th>
+                {% if speaker.classroom is not null %}
+                <td>{{ speaker.classroom.name }}
+                <a href="{{ path('classroom_index') }}">Change speaker</a>
+                </td>
+                {% else %}
+                    <td>Would you like to add one ?
+                    <a href="{{ path('classroom_index') }}">Find a classroom for this speaker.</a>
+                    </td>
+                {% endif %}
+            </tr>
         </tbody>
     </table>
 
