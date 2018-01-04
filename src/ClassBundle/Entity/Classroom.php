@@ -49,12 +49,6 @@ class Classroom
      */
     private $seat;
 
-    public function __construct()
-    {
-       $this->speaker = new ArrayCollection();
-     }
-
-
     /**
      * Get id
      *

@@ -140,11 +140,6 @@ class SeatController extends Controller
         }
 
         $this->getDoctrine()->getManager()->flush();
-        // $beneficiaries = $assignForm->get('beneficiaries')->getData();
-        //foreach ($beneficiaries as $beneficiary){
-        //$account->addBeneficiary($beneficiary);
-        //}
-        //mettre $this...flush ici
         return $this->redirectToRoute('seat_show', array('id' => $seat->getId()));
       }
 
