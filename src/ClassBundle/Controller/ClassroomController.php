@@ -3,10 +3,12 @@
 namespace ClassBundle\Controller;
 
 use ClassBundle\Entity\Classroom;
+use ClassBundle\Entity\Seat;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 /**
  * Classroom controller.
@@ -141,7 +143,7 @@ class ClassroomController extends Controller
     */
 
     public function assignSpeaker(Request $request, Classroom $classroom){
-        
+
         $assignForm = $this->createForm('ClassBundle\Form\ClassroomSpeakerType', $classroom);
         $assignForm->handleRequest($request);
 
@@ -160,6 +162,7 @@ class ClassroomController extends Controller
             'classroom' => $classroom,
             'assign_form' => $assignForm->createView(),
         ));
-        
+
     }
+
 }

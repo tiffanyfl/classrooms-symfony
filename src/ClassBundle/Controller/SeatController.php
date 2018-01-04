@@ -127,15 +127,15 @@ class SeatController extends Controller
     *@Route("/{id}/assign/student", name="student_id")
     *@Method({"GET", "POST"})
     */
-    public function addSeatStudent(Request $request, Seat $seat)
+    public function assignSeatStudent(Request $request, Seat $seat)
     {
-      $form = $this->createForm('ClassBundle\Form\SeatStudentType', $seat);
+      $addstuForm = $this->createForm('ClassBundle\Form\SeatStudentType', $seat);
 
-      $form->handleRequest($request);
+      $addstuForm->handleRequest($request);
 
-      if($form->isSubmitted() && $form->isValid()) {
-        $studentSeat = $form->get('seatStudent')->getData();
-        foreach ($studentSeat as $stud) {
+      if($addstuForm->isSubmitted() && $addstuForm->isValid()) {
+        $stuseat = $addstuForm->get('seatStudent')->getData();
+        foreach ($stuseat as $stud) {
           $seat->addSeatStudent($stud);
         }
 
@@ -150,7 +150,7 @@ class SeatController extends Controller
 
       return $this->render('seat/student_seat.html.twig', array(
         'seat' => $seat,
-        'seatForm' => $form->createView()
+        'seatForm' => $addstuForm->createView(),
       ));
     }
 

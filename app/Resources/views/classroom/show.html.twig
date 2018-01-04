@@ -27,6 +27,34 @@
                     </td>
                 {% endif %}
             </tr>
+            <tr>
+                <th>Seats</th>
+                {% set i = 0 %}
+                {% if classroom.seat is not null %}
+                {% for seat in classroom.seat %}
+                <td>{{ seat.number }}</td>
+                {% if seat.seatStudent is not null %}
+                <td>{{ seat.seatStudent.firstname }} {{ seat.seatStudent.name }} {{ seat.number }}</td>
+                {% else %}
+                    <td>No student in this place.
+                    <a href="{{ path('seat_show', { 'id': seat.id }) }}/assign/student">New student</a>
+                    </td>
+                {% endif %}
+                {% set i = i+1 %}
+                {% endfor %}
+                {% if i < classroom.nbseats %}
+                <td>You can add another seat !
+                <a href="{{ path('seat_new') }}">New seat</a></td>
+                {% else %}
+                <td>The classroom is full !</td>
+                {% endif %}
+
+                {% else %}
+                    <td>No seat for this class. Would you like to add one ?
+                    <a href="{{ path('seat_new') }}">New seat</a>
+                    </td>
+                {% endif %}
+            </tr>
         </tbody>
     </table>
 

@@ -43,11 +43,16 @@ class Classroom
 
     private $speaker;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Seat", mappedBy="seatClass")
+     */
+    private $seat;
+
     public function __construct()
     {
        $this->speaker = new ArrayCollection();
      }
- 
+
 
     /**
      * Get id
@@ -134,5 +139,29 @@ class Classroom
     public function addSpeaker($speaker)
     {
       $this->speaker[] += $speaker;
+    }
+
+    /**
+     * Set seat
+     *
+     * @param integer $seat
+     *
+     * @return Classroom
+     */
+    public function setSeat($seat)
+    {
+        $this->seat = $seat;
+
+        return $this;
+    }
+
+    /**
+     * Get seat
+     *
+     * @return int
+     */
+    public function getSeat()
+    {
+        return $this->seat;
     }
 }

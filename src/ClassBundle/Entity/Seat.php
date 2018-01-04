@@ -35,6 +35,12 @@ class Seat
     private $seatStudent;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Classroom", inversedBy="seat")
+     * @ORM\JoinColumn(name="seat_class_id", referencedColumnName="id")
+     */
+    private $seatClass;
+
+    /**
      * Get id
      *
      * @return int
@@ -98,5 +104,28 @@ class Seat
     public function addSeatStudent($seatStudent)
     {
       $this->seatStudent[] += $seatStudent;
+    }
+
+    /**
+     * Set seatClass
+     *
+     * @param integer $seatClass
+     *
+     * @return Seat
+     */
+    public function setSeatClass($seatClass){
+        $this->seatClass = $seatClass;
+
+        return $this;
+    }
+
+    /**
+     * Get seatClass
+     *
+     * @return Seat
+     */
+    public function getSeatClass()
+    {
+        return $this->seatClass;
     }
 }

@@ -5,6 +5,7 @@ namespace ClassBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class SeatType extends AbstractType
 {
@@ -13,7 +14,10 @@ class SeatType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('number');
+        $builder->add('seatClass', EntityType::class, array(
+          'class' => 'ClassBundle:Classroom',
+          'choice_label' => 'name',
+        ))->add('number');
     }/**
      * {@inheritdoc}
      */
