@@ -165,4 +165,27 @@ class ClassroomController extends Controller
 
     }
 
+    /**
+    *@Route("/{id}/add/seat", name="seat_class_id")
+    *@Method({"GET","POST"})
+    */
+    public function addSeat(Request $request, Classroom $classroom){
+        $seatClassroom = new Seat();
+        $addForm = $this->createForm('ClassBundle\Form\ClassroomSeatType', $seatClassroom);
+        $addForm->handleRequest($request);
+
+        if ($addForm->isSubmitted() && $addForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $seatClassroom->setSeatClass($classroom);
+            $em->persist($seatClassroom);
+            $em->flush();
+            return $this->redirectToRoute('classroom_show', array('id' => $classroom->getId()));
+        }
+
+        return $this->render('classroom/add_seat.html.twig', array(
+            'seat' => $seatClassroom,
+            'addseat_form' => $addForm->createView(),
+        ));
+    }
+
 }

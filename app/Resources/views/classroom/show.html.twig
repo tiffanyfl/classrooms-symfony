@@ -46,14 +46,14 @@
                 {% endfor %}
                 {% if i < classroom.nbseats %}
                 <td>You can add another seat !
-                <a href="{{ path('seat_new') }}">New seat</a></td>
+                <a href="{{ path('classroom_show', { 'id': classroom.id }) }}/add/seat">New seat</a></td>
                 {% else %}
                 <td>The classroom is full !</td>
                 {% endif %}
 
                 {% else %}
                     <td>No seat for this class. Would you like to add one ?
-                    <a href="{{ path('seat_new') }}">New seat</a>
+                    <a href="{{ path('classroom_show', { 'id': classroom.id }) }}/add/seat">New seat</a>
                     </td>
                 {% endif %}
             </tr>
