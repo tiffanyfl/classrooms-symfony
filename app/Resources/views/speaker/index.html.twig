@@ -8,6 +8,7 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
+                <th>Firstame</th>
                 <th>Subject</th>
                 <th>classroom</th>
                 <th>Actions</th>
@@ -18,6 +19,7 @@
             <tr>
                 <td><a href="{{ path('speaker_show', { 'id': speaker.id }) }}">{{ speaker.id }}</a></td>
                 <td>{{ speaker.name }}</td>
+                <td>{{ speaker.firstname }}</td>
                 <td>{{ speaker.subject }}</td>
                 {% if speaker.classroom is not null %}
                     <td>{{ speaker.classroom.name }}</td>

@@ -3,12 +3,14 @@
 namespace ClassBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Student
  *
  * @ORM\Table(name="student")
  * @ORM\Entity(repositoryClass="ClassBundle\Repository\StudentRepository")
+ * @UniqueEntity(fields={"name","firstname"}, message="This student is already exist.")
  */
 class Student
 {
@@ -24,16 +26,21 @@ class Student
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="firstname", type="string", length=255)
+     * @ORM\Column(name="firstname", type="string", length=255, unique=true)
      */
     private $firstname;
+    
+
+    public function __toString(){
+        return $this->name.' '.$this->firstname;
+    }
 
 
     /**

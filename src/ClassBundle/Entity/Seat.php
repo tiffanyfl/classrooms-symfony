@@ -3,12 +3,15 @@
 namespace ClassBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Seat
  *
- * @ORM\Table(name="seat")
+ * @ORM\Table(name="seat", uniqueConstraints={@ORM\UniqueConstraint(columns={"number", "seat_class_id", "student_id"})})
  * @ORM\Entity(repositoryClass="ClassBundle\Repository\SeatRepository")
+ * @UniqueEntity(fields={"number", "seatClass"}, message="This number is already used in this classroom.")
+ * @UniqueEntity(fields={"seatStudent"}, message="This student is already exist in a another classroom.")
  */
 class Seat
 {

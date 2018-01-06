@@ -16,7 +16,6 @@ class SeatStudentType extends AbstractType
     {
         $builder->add('seatStudent', EntityType::class, array(
           'class' => 'ClassBundle:Student',
-          'choice_label' => 'name',
         ));
     }/**
      * {@inheritdoc}

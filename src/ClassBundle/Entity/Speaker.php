@@ -10,7 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table(name="speaker")
  * @ORM\Entity(repositoryClass="ClassBundle\Repository\SpeakerRepository")
- * @UniqueEntity("name", message="This name is already used.")
+ * @UniqueEntity(fields={"name","firstname","subject"}, message="This speaker is already used with this subject.")
  */
 class Speaker
 {
@@ -33,7 +33,14 @@ class Speaker
     /**
      * @var string
      *
-     * @ORM\Column(name="subject", type="string", length=255)
+     * @ORM\Column(name="firstname", type="string", length=255, unique=true)
+     */
+    private $firstname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="subject", type="string", length=255, unique=true)
      */
     private $subject;
 
@@ -42,6 +49,10 @@ class Speaker
      */
     private $classroom;
     
+    public function __toString(){
+        return $this->name.' '.$this->firstname.' '.$this->subject;
+    }
+
 
 
     /**
@@ -76,6 +87,30 @@ class Speaker
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set firstname
+     *
+     * @param string $firstname
+     *
+     * @return Speaker
+     */
+    public function setFirstName($firstname)
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    /**
+     * Get firstname
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstname;
     }
 
     /**

@@ -16,7 +16,6 @@ class ClassroomSpeakerType extends AbstractType
     {
         $builder->add('speaker', EntityType::class, array(
             'class' => 'ClassBundle:Speaker',
-            'choice_label' => 'name',
           ));
     }/**
      * {@inheritdoc}
