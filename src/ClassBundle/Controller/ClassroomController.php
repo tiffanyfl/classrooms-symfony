@@ -170,8 +170,9 @@ class ClassroomController extends Controller
     *@Method({"GET","POST"})
     */
     public function addSeat($id, Request $request, Classroom $classroom){
+
         $seatClassroom = new Seat();
-        $addForm = $this->createForm('ClassBundle\Form\ClassroomSeatType', $seatClassroom, ['label' => $id, 'empty_data' => $classroom]);
+        $addForm = $this->createForm('ClassBundle\Form\ClassroomSeatType', $seatClassroom);
         $addForm->handleRequest($request);
 
         if ($addForm->isSubmitted() && $addForm->isValid()) {
