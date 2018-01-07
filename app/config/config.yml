@@ -68,3 +68,21 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+assetic:
+  debug: '%kernel.debug%'
+  use_controller: '%kernel.debug%'
+  filters:
+      cssrewrite: ~
+  assets:
+      bootstrap_css:
+          inputs:
+            - "%kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap.css"
+          filters:
+            - cssrewrite
+          output: css/bootstrap.css
+      bootstrap_js:
+          inputs:
+            - "%kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.js"
+          filters: [?yui_js]
+          output: js/bootstrap.js

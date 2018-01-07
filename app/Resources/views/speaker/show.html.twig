@@ -1,52 +1,35 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Speaker</h1>
+<div class="container">
+    <h1>Speaker {{ speaker.firstname }} {{ speaker.name }}</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ speaker.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ speaker.name }}</td>
-            </tr>
-            <tr>
-                <th>Firstame</th>
-                <td>{{ speaker.firstname }}</td>
-            </tr>
-            <tr>
-                <th>Subject</th>
-                <td>{{ speaker.subject }}</td>
-            </tr>
-            <tr>
-                <th>Classroom</th>
-                {% if speaker.classroom is not null %}
-                <td>{{ speaker.classroom.name }}
-                <a href="{{ path('classroom_index') }}">Change speaker</a>
-                </td>
-                {% else %}
-                    <td>Would you like to add one ?
-                    <a href="{{ path('classroom_index') }}">Find a classroom for this speaker.</a>
-                    </td>
-                {% endif %}
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
+    <ul class="list-unstyled list-inline">
         <li>
-            <a href="{{ path('speaker_index') }}">Back to the list</a>
+            <a class="btn btn-default" href="{{ path('speaker_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('speaker_edit', { 'id': speaker.id }) }}">Edit</a>
+            <a class="btn btn-default" href="{{ path('speaker_edit', { 'id': speaker.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input class="btn btn-default" type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>
+
+    <p><strong>Id :</strong> {{ speaker.id }}</p>
+    <p><strong>Firstname : </strong> {{ speaker.firstname }}</p>
+    <p><strong>Name :</strong> {{ speaker.name }}</p>
+    <p><strong>Subject :</strong> {{ speaker.subject }}</p>
+    <p><strong>Classroom :</strong>
+    {% if speaker.classroom is not null %}
+    {{ speaker.classroom.name }}
+    <a class="btn btn-default" href="{{ path('classroom_index') }}">Change speaker</a>
+    {% else %}
+        Would you like to add one ?
+        <a class="btn btn-default" href="{{ path('classroom_index') }}">Find a classroom for this speaker.</a>
+    {% endif %}</p>
+    
+    </div>
 {% endblock %}

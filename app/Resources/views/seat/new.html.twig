@@ -1,16 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="container">
     <h1>Seat creation</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <input class="btn btn-default" type="submit" value="Create" />
     {{ form_end(form) }}
 
-    <ul>
+    <ul class="list-unstyled list-inline">
         <li>
-            <a href="{{ path('seat_index') }}">Back to the list</a>
+            <a class="btn btn-default" href="{{ path('seat_index') }}">Back to the list</a>
         </li>
     </ul>
+  </div>
 {% endblock %}

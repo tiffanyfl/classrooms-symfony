@@ -169,9 +169,9 @@ class ClassroomController extends Controller
     *@Route("/{id}/add/seat", name="seat_class_id")
     *@Method({"GET","POST"})
     */
-    public function addSeat(Request $request, Classroom $classroom){
+    public function addSeat($id, Request $request, Classroom $classroom){
         $seatClassroom = new Seat();
-        $addForm = $this->createForm('ClassBundle\Form\ClassroomSeatType', $seatClassroom);
+        $addForm = $this->createForm('ClassBundle\Form\ClassroomSeatType', $seatClassroom, ['label' => $id, 'empty_data' => $classroom]);
         $addForm->handleRequest($request);
 
         if ($addForm->isSubmitted() && $addForm->isValid()) {
@@ -180,6 +180,7 @@ class ClassroomController extends Controller
             $em->persist($seatClassroom);
             $em->flush();
             return $this->redirectToRoute('classroom_show', array('id' => $classroom->getId()));
+            console.log($id);
         }
 
         return $this->render('classroom/add_seat.html.twig', array(

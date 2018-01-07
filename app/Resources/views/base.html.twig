@@ -3,11 +3,33 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+          {% stylesheets '@bootstrap_css' %}
+            <link rel="stylesheet" href="{{ asset_url }}"/>
+          {% endstylesheets %}
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+      <ul class="list-unstyled list-inline text-center" style="margin-top: 5px;">
+          <li>
+              <a class="btn btn-default" href="{{ path('classroom_index') }}">Classroom</a>
+          </li>
+          <li>
+              <a class="btn btn-default" href="{{ path('student_index') }}">Student</a>
+          </li>
+          <li>
+              <a class="btn btn-default" href="{{ path('speaker_index') }}">Speaker</a>
+          </li>
+          <li>
+              <a class="btn btn-default" href="{{ path('seat_index') }}">Seat</a>
+          </li>
+      </ul>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+          {% javascripts '@bootstrap_js' %}
+            <script src="{{ asset_url }}"></script>
+          {% endjavascripts %}
+        {% endblock %}
     </body>
 </html>

@@ -1,1 +1,30 @@
-Hello World!
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-4">Welcome to Classroom !</h1>
+    <p class="lead">Here you can add a classroom, add students, add speakers and assign them to a classroom.</p>
+    <hr class="my-4">
+    <p>You can navigate by following the links.</p>
+    <p class="lead">
+      <ul class="list-unstyled list-inline">
+          <li>
+              <a class="btn btn-default" href="{{ path('classroom_index') }}">Classroom</a>
+          </li>
+          <li>
+              <a class="btn btn-default" href="{{ path('student_index') }}">Student</a>
+          </li>
+          <li>
+              <a class="btn btn-default" href="{{ path('speaker_index') }}">Speaker</a>
+          </li>
+          <li>
+              <a class="btn btn-default" href="{{ path('seat_index') }}">Seat</a>
+          </li>
+      </ul>
+    </p>
+  </div>
+
+
+</div>
+{% endblock %}

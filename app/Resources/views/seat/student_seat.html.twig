@@ -1,16 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Student Seat</h1>
+<div class="container">
+    <h1>Assign a Student to a Seat</h1>
 
     {{ form_start(seatForm) }}
         {{ form_widget(seatForm) }}
-        <input type="submit" value="Assign" />
+        <input class="btn btn-default" type="submit" value="Assign" />
     {{ form_end(seatForm) }}
-
-    <ul>
+    <br>
+    <ul class="list-unstyled list-inline">
         <li>
-            <a href="{{ path('classroom_index') }}">Back to the list</a>
+            <a class="btn btn-default" href="{{ path('student_new') }}">Create a new student</a>
+        </li>
+        <li>
+            <a class="btn btn-default" href="{{ path('classroom_index') }}">Back to the list</a>
         </li>
     </ul>
+</div>
 {% endblock %}

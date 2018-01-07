@@ -1,76 +1,75 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+  <div class="container">
     <h1>Classroom</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ classroom.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ classroom.name }}</td>
-            </tr>
-            <tr>
-                <th>Seat</th>
-                <td>{{ classroom.nbseats }}</td>
-            </tr>
-            <tr>
-                <th>Speaker</th>
-                {% if classroom.speaker is not null %}
-                <td>{{ classroom.speaker.name }} {{ classroom.speaker.firstname }} {{ classroom.speaker.subject }}
-                <a href="{{ path('classroom_show', { 'id': classroom.id }) }}/assign/speaker">Change speaker</a>
-                </td>
-                {% else %}
-                    <td>No speaker for this class. Would you like to assign one ?
-                    <a href="{{ path('classroom_show', { 'id': classroom.id }) }}/assign/speaker">New speaker</a>
-                    </td>
-                {% endif %}
-            </tr>
-            <tr>
-                <th>Seats</th>
-                {% set i = 0 %}
-                {% if classroom.seat is not null %}
-                {% for seat in classroom.seat %}
-                <td>{{ seat.number }}</td>
-                {% if seat.seatStudent is not null %}
-                <td>{{ seat.seatStudent.firstname }} {{ seat.seatStudent.name }} {{ seat.number }}</td>
-                {% else %}
-                    <td>No student in this place.
-                    <a href="{{ path('seat_show', { 'id': seat.id }) }}/assign/student">New student</a>
-                    </td>
-                {% endif %}
-                {% set i = i+1 %}
-                {% endfor %}
-                {% if i < classroom.nbseats %}
-                <td>You can add another seat !
-                <a href="{{ path('classroom_show', { 'id': classroom.id }) }}/add/seat">New seat</a></td>
-                {% else %}
-                <td>The classroom is full !</td>
-                {% endif %}
-
-                {% else %}
-                    <td>No seat for this class. Would you like to add one ?
-                    <a href="{{ path('classroom_show', { 'id': classroom.id }) }}/add/seat">New seat</a>
-                    </td>
-                {% endif %}
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
+    <ul class="list-unstyled list-inline">
         <li>
-            <a href="{{ path('classroom_index') }}">Back to the list</a>
+            <a class="btn btn-default" href="{{ path('classroom_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('classroom_edit', { 'id': classroom.id }) }}">Edit</a>
+            <a class="btn btn-default" href="{{ path('classroom_edit', { 'id': classroom.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input class="btn btn-default" type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>
+
+    <h2>{{ classroom.name }}</h2>
+    <p><strong>Id :</strong> {{ classroom.id }}</p>
+    <p><strong>Number of seats :</strong> {{ classroom.nbseats }}</p>
+    <p><strong>Speaker :</strong>
+    {% if classroom.speaker is not null %}
+    {{ classroom.speaker.name }} {{ classroom.speaker.firstname }} -- {{ classroom.speaker.subject }}
+    <a class="btn btn-default" href="{{ path('classroom_show', { 'id': classroom.id }) }}/assign/speaker">Change speaker</a>
+    {% else %}
+        No speaker for this class. Would you like to assign one ?
+        <a class="btn btn-default" href="{{ path('classroom_show', { 'id': classroom.id }) }}/assign/speaker">New speaker</a>
+    {% endif %}
+    </p>
+
+    <h2>Seats</h2>
+
+    <div class="row">
+    <div class="col-md-6">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>Student</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% set i = 0 %}
+        {% if classroom.seat is not null %}
+        {% for seat in classroom.seat %}
+            <tr>
+                <td>{{ seat.number }}</td>
+                {% if seat.seatStudent is not null %}
+                <td>{{ seat.seatStudent.firstname }} {{ seat.seatStudent.name }}</td>
+                {% else %}
+                    <td>No student in this place.
+                    <a class="btn btn-default" href="{{ path('seat_show', { 'id': seat.id }) }}/assign/student">Assign student</a>
+                    </td>
+                {% endif %}
+            </tr>
+            {% set i = i+1 %}
+            {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+
+    {% if i < classroom.nbseats %}
+    <p>You can add another seat !
+    <a class="btn btn-default" href="{{ path('classroom_show', { 'id': classroom.id }) }}/add/seat">New seat</a></p>
+    {% else %}
+    <p>The classroom is full !</p>
+    {% endif %}
+   </div>
+   </div>
+   
+  </div>
 {% endblock %}

@@ -1,36 +1,48 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="container">
+<div class="text-center">
     <h1>Classrooms list</h1>
+    <ul class="list-unstyled list-inline">
+        <li>
+            <a class="btn btn-default" href="{{ path('classroom_new') }}">Create a new classroom</a>
+        </li>
+    </ul>
+  </div>
+  <br>
 
-    <table>
+    <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+    <table class="table text-center">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Seat</th>
-                <th>Speaker</th>
-                <th>Actions</th>
+                <th class="text-center">Id</th>
+                <th class="text-center">Name</th>
+                <th class="text-center">Seat</th>
+                <th class="text-center">Speaker</th>
+                <th class="text-center">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for classroom in classrooms %}
             <tr>
-                <td><a href="{{ path('classroom_show', { 'id': classroom.id }) }}">{{ classroom.id }}</a></td>
+                <td>{{ classroom.id }}</td>
                 <td>{{ classroom.name }}</td>
                 <td>{{ classroom.nbseats }}</td>
                 {% if classroom.speaker is not null %}
-                    <td>{{ classroom.speaker.name }}</td>
+                    <td>{{ classroom.speaker.firstname }} {{ classroom.speaker.name }}</td>
                 {% else %}
                     <td>No speaker</td>
                 {% endif %}
                 <td>
-                    <ul>
+                    <ul class="list-unstyled list-inline">
                         <li>
-                            <a href="{{ path('classroom_show', { 'id': classroom.id }) }}">show</a>
+                            <a class="btn btn-default" href="{{ path('classroom_show', { 'id': classroom.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('classroom_edit', { 'id': classroom.id }) }}">edit</a>
+                            <a class="btn btn-default" href="{{ path('classroom_edit', { 'id': classroom.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -38,10 +50,8 @@
         {% endfor %}
         </tbody>
     </table>
+    </div>
+    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('classroom_new') }}">Create a new classroom</a>
-        </li>
-    </ul>
+</div>
 {% endblock %}

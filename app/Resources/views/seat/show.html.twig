@@ -1,47 +1,34 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Seat</h1>
+<div class="container">
+    <h1>Seat n°{{ seat.number }} in {{ seat.seatClass.name }}</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ seat.id }}</td>
-            </tr>
-            <tr>
-                <th>Number</th>
-                <td>{{ seat.number }}</td>
-            </tr>
-            <tr>
-                <th>Student</th>
-                {% if seat.seatStudent is not null %}
-                <td>{{ seat.seatStudent.firstname }} {{ seat.seatStudent.name }}</td>
-                {% else %}
-                    <td>No student in this place.
-                    <a href="{{ path('seat_show', { 'id': seat.id }) }}/assign/student">New student</a>
-                    </td>
-                {% endif %}
-            </tr>
-        </tbody>
-    </table>
-
-    {% for trs in seat.seatStudent %}
-      <p>{{ trs.name }}</p>
-    {% endfor %}
-
-
-    <ul>
+    <ul class="list-unstyled list-inline">
         <li>
-            <a href="{{ path('seat_index') }}">Back to the list</a>
+            <a class="btn btn-default" href="{{ path('seat_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('seat_edit', { 'id': seat.id }) }}">Edit</a>
+            <a class="btn btn-default" href="{{ path('seat_edit', { 'id': seat.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input class="btn btn-default" type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>
+
+    <p><strong>Id :</strong> {{ seat.id }}</p>
+    <p><strong>Number :</strong> {{ seat.number }}</p>
+    <p><strong>Student :</strong>
+    {% if seat.seatStudent is not null %}
+    {{ seat.seatStudent.firstname }} {{ seat.seatStudent.name }}
+    {% else %}
+        No student in this place.
+        <a class="btn btn-default" href="{{ path('seat_show', { 'id': seat.id }) }}/assign/student">New student</a>
+    {% endif %}</p>
+    <p><strong>Classroom :</strong> {{ seat.seatClass.name }}</p>
+
+
+</div>
 {% endblock %}
